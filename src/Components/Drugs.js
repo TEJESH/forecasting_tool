@@ -7,25 +7,29 @@ class Drugs extends Component {
     super(props);
     this.state = {
       DrugName : [],
+      selectedCountry: '',
+      selectedDisease:'',
       selectedDrugs:''
     }
   }
 
   handleClick(o){
-    let selected_disease = o.target.value;
-    console.log("selected_disease="+o.target.value);
-    if(selected_disease === "Select a Disease"){
-      selected_disease = ""
+    let selected_drug = o.target.value;
+    if(selected_drug === "Select a Drug"){
+      selected_drug = ""
     }
-    this.setState({selectedDrugs: selected_disease},
+    this.setState({selectedDrugs: selected_drug},
         function (
         ) {
             this.props.fUpdate(this.state.selectedDrugs);
         });
 }
-componentDidUpdate(prevProps) {
-  if (prevProps.selectedDisease !== this.props.selectedDisease) {
-      axios.post('/get_drug', {selected_disease: this.props.selectedDisease}, {headers: {'content-type': 'application/json'}}).then((res) => {
+componentDidUpdate(prevProps) 
+{
+  console.log("selectedCountry====>>>>---"+this.props.selectedCountry);
+  if (prevProps.selectedDisease !== this.props.selectedDisease) 
+  {
+      axios.post('/get_drug', {selected_disease: this.props.selectedDisease,selected_country:this.props.selectedCountry}, {headers: {'content-type': 'application/json'}}).then((res) => {
       const DrugName = Array.from(res.data);
       console.log(res.data);
       this.setState({DrugName});

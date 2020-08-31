@@ -17,6 +17,7 @@ class App extends Component {
     }
 
     updateSelectedCountry(selectedCountry){
+      {console.log("2222222")}
       this.setState({
         selectedCountry: selectedCountry,
         selectedDisease : "",
@@ -70,7 +71,7 @@ class App extends Component {
         <div>
           <Countries fUpdate={this.updateSelectedCountry.bind(this)}/>
           <Diseases selectedCountry={this.state.selectedCountry} fUpdate={this.updateSelectedDisease.bind(this)}/>
-          <Drugs selectedDisease={this.state.selectedDisease} fUpdate={this.updateSelectedDrugs.bind(this)}/>
+          <Drugs selectedCountry={this.state.selectedCountry} selectedDisease={this.state.selectedDisease} fUpdate={this.updateSelectedDrugs.bind(this)}/>
           <Company selectedDrugs={this.state.selectedDrugs} fUpdate={this.updateSelectedCompany.bind(this)}/>
         </div>
       )

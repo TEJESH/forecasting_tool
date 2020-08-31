@@ -12,21 +12,22 @@ class Company extends Component {
         }
       }
 
-      handleClick(o){
-        let selected_drug = o.target.value;
-        console.log("selected_drug="+o.target.value)
-        if(selected_drug === "Select a Drug"){
-          selected_drug = ""
+      handleClick(o)
+      {
+        let selected_company = o.target.value;
+        if(selected_company === "Select a Company")
+        {
+          selected_company = ""
         }
-        this.setState({selectedCompany: selected_drug},
+        this.setState({selectedCompany: selected_company},
             function (
             ) {
                 this.props.fUpdate(this.state.selectedCompany);
             });
     }
-    componentDidUpdate(prevProps) {
-      console.log("---"+prevProps.selectedDisease);
-      console.log("---"+prevProps.selectedDrugs);
+    componentDidUpdate(prevProps) 
+    {
+      // console.log("this.props.selectedCountry==="+this.props.selectedCountry)
       if (prevProps.selectedDrugs !== this.props.selectedDrugs) {
           axios.post('/get_company', {selected_drug: this.props.selectedDrugs}, {headers: {'content-type': 'application/json'}}).then((res) => {
           const CompanyName = Array.from(res.data);
@@ -44,6 +45,7 @@ class Company extends Component {
         return (
           <div>
             <select disabled={isDisabled} name="Companies" id="Companies" onChange={this.handleClick.bind(this)}>
+            {/* {console.log("----1111")} */}
             <option>Select a Company</option>
             {this.state.CompanyName.map(CompanyName => <option>{CompanyName}</option> )}      
             </select>

@@ -8,18 +8,20 @@ class Diseases extends Component
       super(props);
       this.state = {
         DiseaseName : [],
+        selectedCountry: '',
         selectedDisease:''
       }
     }
     
     handleClick(o)
     {
-      let selected_country = o.target.value;
-      if(selected_country == "Select a Country")
+      console.log("###this.state.selectedCountry###---"+this.state.selectedCountry);
+      let selected_disease = o.target.value;
+      if(selected_disease === "Select a Disease")
       {
-        selected_country = ""
+        selected_disease = ""
       }
-        this.setState({selectedDisease: selected_country},
+        this.setState({selectedDisease: selected_disease},
             function (
             ) {
                 this.props.fUpdate(this.state.selectedDisease);
@@ -27,8 +29,13 @@ class Diseases extends Component
     }
     
 
-    componentDidUpdate(prevProps) {
-      if (prevProps.selectedCountry !== this.props.selectedCountry) {
+    componentDidUpdate(prevProps) 
+    {
+      // console.log("this.props.selectedCountry??==="+this.props.selectedCountry);
+
+      if (prevProps.selectedCountry !== this.props.selectedCountry) 
+      {
+          this.setState({selectedCountry: this.props.selectedCountry})
           axios.post('/get_disease', {selected_country: this.props.selectedCountry}, {headers: {'content-type': 'application/json'}}).then((res) => {
           const DiseaseName = Array.from(res.data);
           console.log(res.data);
