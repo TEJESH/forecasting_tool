@@ -72,7 +72,7 @@ class App extends Component {
           <Countries fUpdate={this.updateSelectedCountry.bind(this)}/>
           <Diseases selectedCountry={this.state.selectedCountry} fUpdate={this.updateSelectedDisease.bind(this)}/>
           <Drugs selectedCountry={this.state.selectedCountry} selectedDisease={this.state.selectedDisease} fUpdate={this.updateSelectedDrugs.bind(this)}/>
-          <Company selectedDrugs={this.state.selectedDrugs} fUpdate={this.updateSelectedCompany.bind(this)}/>
+          <Company selectedCountry={this.state.selectedCountry} selectedDisease={this.state.selectedDisease} selectedDrugs={this.state.selectedDrugs} fUpdate={this.updateSelectedCompany.bind(this)}/>
         </div>
       )
     }

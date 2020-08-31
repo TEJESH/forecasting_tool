@@ -7,6 +7,9 @@ class Company extends Component {
         super(props);
         this.state = {
           CompanyName : [],
+          selectedCountry: '',
+          selectedDisease:'',
+          selectedDrugs:'',
           selectedCompany:''
 
         }
@@ -27,9 +30,12 @@ class Company extends Component {
     }
     componentDidUpdate(prevProps) 
     {
-      // console.log("this.props.selectedCountry==="+this.props.selectedCountry)
+      console.log("selectedCountry====>>>>---"+this.props.selectedCountry);
+      console.log("selectedDisease====>>>>---"+this.props.selectedDisease);
+      console.log("selectedDrugs====>>>>---"+this.props.selectedDrugs);
+      console.log("selectedCompany====>>>>---"+this.props.selectedCompany);
       if (prevProps.selectedDrugs !== this.props.selectedDrugs) {
-          axios.post('/get_company', {selected_drug: this.props.selectedDrugs}, {headers: {'content-type': 'application/json'}}).then((res) => {
+          axios.post('/get_company', {selected_country:this.props.selectedCountry,selected_disease: this.props.selectedDisease,selected_drug: this.props.selectedDrugs}, {headers: {'content-type': 'application/json'}}).then((res) => {
           const CompanyName = Array.from(res.data);
           console.log(res.data);
           this.setState({CompanyName});

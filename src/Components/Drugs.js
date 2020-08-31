@@ -26,7 +26,7 @@ class Drugs extends Component {
 }
 componentDidUpdate(prevProps) 
 {
-  console.log("selectedCountry====>>>>---"+this.props.selectedCountry);
+  // console.log("selectedCountry====>>>>---"+this.props.selectedCountry);
   if (prevProps.selectedDisease !== this.props.selectedDisease) 
   {
       axios.post('/get_drug', {selected_disease: this.props.selectedDisease,selected_country:this.props.selectedCountry}, {headers: {'content-type': 'application/json'}}).then((res) => {
